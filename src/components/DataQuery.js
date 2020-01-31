@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { withStyles } from '@material-ui/styles';
 
+// setting hoc style is to component to make it style more readable
 const styles = {
   root: {
     textAlign: 'left',
@@ -19,13 +20,15 @@ const styles = {
   }
 };
 
-function DataQuery({ classes }) {
+// setting the functional component
+const DataQuery = ({ classes }) => {
   const [data, setData] = useState({ hits: [] });
   const [query, setQuery] = useState('react');
 
   useEffect(() => {
     let ignore = false;
 
+    // fetching the data from the api using axios data fetching library
     async function fetchData() {
       const result = await axios(
         `https://hn.algolia.com/api/v1/search?query=${query}`
@@ -34,6 +37,8 @@ function DataQuery({ classes }) {
     }
 
     fetchData();
+
+    // cleaning the call each time UI renders and listens the query when user make a search
     return () => {
       ignore = true;
     };
@@ -57,6 +62,6 @@ function DataQuery({ classes }) {
       </ul>
     </div>
   );
-}
+};
 
 export default withStyles(styles)(DataQuery);
