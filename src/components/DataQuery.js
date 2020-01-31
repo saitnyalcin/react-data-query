@@ -1,7 +1,25 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { withStyles } from '@material-ui/styles';
 
-function DataQuery() {
+const styles = {
+  root: {
+    textAlign: 'left',
+    margin: '3em',
+    fontSize: '1em',
+    '& .container-textBox': {
+      marginLeft: '2.5em'
+    },
+    '& .container-dataList': {
+      listStyle: 'none'
+    },
+    '& .container-input': {
+      fontSize: '1em'
+    }
+  }
+};
+
+function DataQuery({ classes }) {
   const [data, setData] = useState({ hits: [] });
   const [query, setQuery] = useState('react');
 
@@ -22,11 +40,15 @@ function DataQuery() {
   }, [query]);
 
   return (
-    <div style={{ textAlign: 'left', margin: '3em' }}>
-      <div style={{ marginLeft: '2.5em' }}>
-        <input value={query} onChange={e => setQuery(e.target.value)} />
+    <div className={classes.root}>
+      <div className={`container-textBox`}>
+        <input
+          value={query}
+          className={`container-input`}
+          onChange={e => setQuery(e.target.value)}
+        />
       </div>
-      <ul style={{ listStyle: 'none' }}>
+      <ul className={`container-dataList`}>
         {data.hits.map(item => (
           <li key={item.objectID}>
             <a href={item.url}>{item.title}</a>
@@ -37,4 +59,4 @@ function DataQuery() {
   );
 }
 
-export default DataQuery;
+export default withStyles(styles)(DataQuery);
