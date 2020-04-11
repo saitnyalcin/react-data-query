@@ -23,7 +23,7 @@ const styles = {
 // setting the functional component
 const DataQuery = ({ classes }) => {
   const [data, setData] = useState({ hits: [] });
-  const [query, setQuery] = useState('react');
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     let ignore = false;
