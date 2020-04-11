@@ -20,7 +20,7 @@ const styles = {
   }
 };
 
-// setting the functional component
+// setting the functional component and setting the states
 const DataQuery = ({ classes }) => {
   const [data, setData] = useState({ hits: [] });
   const [query, setQuery] = useState('');
