@@ -1,6 +1,6 @@
+import { withStyles } from '@material-ui/styles';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { withStyles } from '@material-ui/styles';
 
 // setting hoc style is to component to make it style more readable
 const styles = {
