@@ -1,29 +1,29 @@
-import { withStyles } from '@material-ui/styles';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { withStyles } from "@material-ui/styles";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 // setting hoc style is to component to make it style more readable
 const styles = {
   root: {
-    textAlign: 'left',
-    margin: '3em',
-    fontSize: '1em',
-    '& .container-textBox': {
-      marginLeft: '2.5em'
+    textAlign: "left",
+    margin: "3em",
+    fontSize: "1em",
+    "& .container-textBox": {
+      marginLeft: "2.5em",
     },
-    '& .container-dataList': {
-      listStyle: 'none'
+    "& .container-dataList": {
+      listStyle: "none",
     },
-    '& .container-input': {
-      fontSize: '1em'
-    }
-  }
+    "& .container-input": {
+      fontSize: "1em",
+    },
+  },
 };
 
 // setting the functional component and setting the states
 const DataQuery = ({ classes }) => {
   const [data, setData] = useState({ hits: [] });
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     let ignore = false;
@@ -50,11 +50,11 @@ const DataQuery = ({ classes }) => {
         <input
           value={query}
           className={`container-input`}
-          onChange={e => setQuery(e.target.value)}
+          onChange={(e) => setQuery(e.target.value)}
         />
       </div>
       <ul className={`container-dataList`}>
-        {data.hits.map(item => (
+        {data.hits.map((item) => (
           <li key={item.objectID}>
             <a href={item.url}>{item.title}</a>
           </li>
