@@ -1,5 +1,4 @@
 import { withStyles } from "@material-ui/styles";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 // setting hoc style is to component to make it style more readable
@@ -26,14 +25,19 @@ const DataQuery = ({ classes }) => {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    let ignore = false;
+    let ignore = true;
 
     // fetching the data from the api using axios data fetching library
     async function fetchData() {
-      const result = await axios(
-        `https://hn.algolia.com/api/v1/search?query=${query}`
-      );
-      if (!ignore) setData(result.data);
+      await fetch(`https://hn.algolia.com/api/v1/search?query=${query}`)
+        .then((response) => response.json())
+        .then((data) => (ignore ? setData(data) : ""))
+        .then((result) => {
+          console.log("Success:", result);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     }
 
     fetchData();
